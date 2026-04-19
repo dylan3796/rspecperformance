@@ -1,7 +1,7 @@
 export const faqs: { q: string; a: string }[] = [
   {
     q: "Do I need to be local to work with RSpec Performance?",
-    a: "We're based in the Greater Toronto Area and most work is done in-shop by appointment. We also take out-of-town customers who ship or trailer their cars in for builds and tunes — reach out and we'll plan the logistics.",
+    a: "We're based in Sacramento and most work is done in-shop by appointment. We take customers from across the Greater Sacramento Valley (Roseville, Rocklin, Folsom, Elk Grove, Davis, and beyond), and out-of-town customers who ship or trailer their cars in for builds and tunes — reach out and we'll plan the logistics.",
   },
   {
     q: "What makes RSpec different from a dealership?",

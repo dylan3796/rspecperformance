@@ -13,15 +13,15 @@ export const site = {
   email: "info@rspecperformance.com",
   bookingEmail: "info@rspecperformance.com",
 
-  // TODO(Rav): confirm address / service area.
+  // TODO(Rav): confirm exact street address / service area.
   address: {
     streetAddress: "Service area — appointment only",
-    addressLocality: "Greater Toronto Area",
-    addressRegion: "ON",
+    addressLocality: "Sacramento",
+    addressRegion: "CA",
     postalCode: "",
-    addressCountry: "CA",
+    addressCountry: "US",
   },
-  serviceArea: "Greater Toronto Area & surrounding regions",
+  serviceArea: "Sacramento & Greater Sacramento Valley",
 
   hours: [
     { day: "Mon – Fri", value: "9:00 AM – 7:00 PM" },

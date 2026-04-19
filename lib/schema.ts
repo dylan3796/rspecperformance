@@ -2,15 +2,18 @@ import { site } from "./site";
 import { services } from "./services";
 
 const areaServed = [
-  "Toronto",
-  "Mississauga",
-  "Brampton",
-  "Vaughan",
-  "Markham",
-  "Richmond Hill",
-  "Oakville",
-  "Burlington",
-  "Hamilton",
+  "Sacramento",
+  "Elk Grove",
+  "Roseville",
+  "Rocklin",
+  "Folsom",
+  "Citrus Heights",
+  "Rancho Cordova",
+  "Davis",
+  "Woodland",
+  "Natomas",
+  "West Sacramento",
+  "Stockton",
 ];
 
 export function autoRepairJsonLd() {

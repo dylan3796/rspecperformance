@@ -125,7 +125,7 @@ When someone fills out the form on `/contact`, here's what happens:
 - Every month, pick your 2 best jobs → ask the devs to turn them into Build pages.
 - Every dyno day → short video on IG + Reels.
 
-Do this for 6 months and you'll be on page 1 of Google for "Nissan tuner Toronto" (or wherever you're operating).
+Do this for 6 months and you'll be on page 1 of Google for "Nissan tuner Sacramento" (or "JDM shop Roseville", "GT-R tuner Folsom", etc).
 
 **Want to add TikTok / YouTube?** Just send your dev the links and they'll add them to the site.
 
