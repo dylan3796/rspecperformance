@@ -1,84 +1,100 @@
-# CLAUDE.md — editing guide for RSpec Performance
+# CLAUDE.md — entry point for AI agents working on RSpec Performance
 
-Read this before touching code. It encodes the conventions the site was built on.
+> You (the AI) just opened this repo. Read this file first. It's your map.
 
-## Stack
+## What this repo is
 
-- Next.js 16 (App Router) + React 19 + TypeScript
-- Tailwind CSS v4 (configured via `@theme` in `app/globals.css`, **not** a config file)
-- Resend for transactional email
-- Zod for input validation
-- pnpm for installs
+The marketing website for **RSpec Performance** — a Nissan / JDM specialty performance shop in **Sacramento, CA** run by **Rav**, a Nissan master technician (7+ years at the dealer, 10+ years wrenching). Live at https://rspecperformance.com.
 
-## Conventions
+This is a **foundation / shell**. Rav and a small group of contributors (cousin Dylan, friend Edrick) will iterate on it. Future AI sessions should expect to:
 
-- **React Server Components by default.** Add `"use client"` only when a component needs browser APIs or state. Currently the only client components are `components/layout/Nav.tsx` and `components/contact/ContactForm.tsx`.
-- **No runtime CSS-in-JS.** Tailwind utility classes + the CSS custom properties in `globals.css` (e.g. `text-[--color-accent]`) are the whole styling system.
-- **One source of truth per concept:**
-  - Contact info / hours / socials → `lib/site.ts`
-  - Services → `lib/services.ts` (append an object; the listing + detail page generate themselves)
-  - Builds → `lib/builds.ts` (same pattern)
-  - FAQs → `lib/faqs.ts`
-- **Brand is CSS variables.** Re-theme by editing a single var in `@theme` (e.g. `--color-accent`). Don't hardcode colors in components.
-- **Form validation is shared.** `lib/validation.ts` exports the `contactSchema` used by both `ContactForm` (client) and `app/api/contact/route.ts` (server).
-- **Metadata lives in the page.** Each route exports `metadata` (or `generateMetadata`). Root defaults are in `app/layout.tsx`.
-- **JSON-LD is centralized.** Build from `lib/schema.ts` helpers and drop via `<script type="application/ld+json">`.
+- Add new services or builds (typed arrays in `lib/`)
+- Polish copy, swap placeholder art for real photos
+- Add pages as the business grows (booking, blog, customer portal)
+- Improve SEO, analytics, performance
+- Never ship aggressive refactors without a good reason — this is a working product, not a playground
 
-## How to add a service
+## Where to start reading
 
-1. Open `lib/services.ts`.
-2. Append a new object to the `services` array. Required fields: `slug`, `title`, `tagline`, `category`, `icon`, `highlights`, `body`. `relatedSlugs` is optional.
-3. If you want a new icon, add a case to `components/ui/Icon.tsx`.
-4. The service automatically gets:
-   - A card on `/services`
-   - A detail page at `/services/[slug]`
-   - An entry in `sitemap.xml`
-   - Service JSON-LD for search engines
+Read in this order:
 
-No other code changes needed.
+1. **CLAUDE.md** (this file) — map + conventions summary
+2. **[docs/BUSINESS.md](./docs/BUSINESS.md)** — who RSpec is, brand voice, positioning, audience. **Critical context** for any copy or content change.
+3. **[docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md)** — complete file-by-file tour
+4. **[docs/CONVENTIONS.md](./docs/CONVENTIONS.md)** — coding patterns; do-this / don't-do-that
+5. **[docs/ROADMAP.md](./docs/ROADMAP.md)** — prioritized backlog so you know what "next" means
+6. **[docs/CONTENT_GUIDE.md](./docs/CONTENT_GUIDE.md)** — voice, tone, SEO strategy for anything customer-facing
+7. **[docs/GLOSSARY.md](./docs/GLOSSARY.md)** — JDM / Nissan / tuning terms so you don't hallucinate specs
 
-## How to add a build
+For non-technical context:
 
-1. Open `lib/builds.ts`.
-2. Append a new object with `slug`, `title`, `subtitle`, `year`, `make`, `model`, `platform`, optional `hp`/`tq`, `specs`, `story`, `tags`, `heroImage`.
-3. Drop photos in `public/images/builds/<slug>/` if you have them. Until then, `components/builds/BuildArt.tsx` renders a stylized placeholder.
-4. When ready, replace the `<BuildArt />` usages in `app/builds/page.tsx` and `app/builds/[slug]/page.tsx` with `<Image>` from `next/image`.
+- **[HANDOFF_FOR_RAV.md](./HANDOFF_FOR_RAV.md)** — the owner's guide (plain English, for Rav)
+- **[DEPLOYMENT.md](./DEPLOYMENT.md)** — Vercel + Porkbun + Resend deployment walkthrough
+- **[ASSETS_NEEDED.md](./ASSETS_NEEDED.md)** — checklist of photos/copy Rav owes the devs
 
-## How to change the brand color
+## The 30-second stack summary
 
-Edit one line in `app/globals.css`:
+- **Next.js 16** (App Router) + React 19 + TypeScript
+- **Tailwind CSS v4** via `@theme` in `app/globals.css` (NO config file)
+- **Resend** for transactional email (contact form)
+- **Zod** for input validation (shared client + server schema)
+- **pnpm** for installs
+- **Vercel** for hosting (auto-deploys `main`)
 
-```css
-@theme {
-  --color-accent: #00e5ff;   /* ← change this */
-}
-```
+## The single-source-of-truth rule
 
-Everything using `text-[--color-accent]`, `bg-[--color-accent]`, the gradient text, glow shadows, and the OG image updates automatically.
+Every domain concept has **one file** that owns it. Edit the file, the rest regenerates.
 
-## Contact form
+| Concept | Owner file |
+|---|---|
+| Company info (phone, email, hours, socials, nav) | `lib/site.ts` |
+| Services list + detail content | `lib/services.ts` |
+| Builds / portfolio | `lib/builds.ts` |
+| FAQ entries | `lib/faqs.ts` |
+| JSON-LD (schema.org) builders | `lib/schema.ts` |
+| Shared zod schemas | `lib/validation.ts` |
+| Fonts | `lib/fonts.ts` |
+| Brand tokens (colors, spacing, typography) | `app/globals.css` → `@theme` block |
 
-- Route: `app/api/contact/route.ts` (Node runtime).
-- Anti-spam: honeypot `company` field + 1.5s minimum submit time + in-memory per-IP rate limit (5/hour).
-- **To upgrade rate limiting for multi-region deploys**, swap the in-memory `Map` for Upstash Redis or Vercel KV. The interface is 10 lines; see `rateLimited()`.
-- In dev without `RESEND_API_KEY`, the route logs the payload and returns success so you can test the UI. In production the route returns 500 if the key is missing — this is intentional.
+**If you find yourself hardcoding a company fact in a page or component, stop.** Add it to `lib/site.ts` and reference it.
 
-## SEO
+## The 10 rules
 
-- `AutoRepair` + `LocalBusiness` JSON-LD is rendered in the root layout.
-- `Service` JSON-LD on each `/services/[slug]` page.
-- `FAQPage` JSON-LD on `/faq`.
-- `BreadcrumbList` on service + build detail pages.
-- `app/sitemap.ts` enumerates everything; keep it updated when you add new top-level routes.
-- Update the `areaServed` cities in `lib/schema.ts` once Rav confirms the exact service area.
+1. **React Server Components by default.** Only add `"use client"` when a component needs browser APIs, state, or effects. Currently only `Nav.tsx` and `ContactForm.tsx` are client components.
+2. **No CSS-in-JS libraries.** Tailwind utilities + CSS custom properties (e.g. `text-[--color-accent]`) are the entire styling system.
+3. **Brand is CSS variables.** Change colors by editing one line in `app/globals.css` `@theme`. Never hardcode hex in components.
+4. **Validation is shared.** `lib/validation.ts` exports one zod schema used by both the client form and the server route.
+5. **Metadata lives in the page.** Each route exports `metadata` or `generateMetadata`. Root defaults are in `app/layout.tsx`.
+6. **JSON-LD is centralized.** Build with helpers from `lib/schema.ts`, render via `<script type="application/ld+json">`.
+7. **New services / builds / FAQs = append to the array.** No new page files needed — detail pages auto-generate via `generateStaticParams`.
+8. **Keep components small (<~150 lines).** If it's bigger, it's doing too much.
+9. **Performance budget.** Lighthouse: Perf ≥ 90, SEO 100, A11y ≥ 95. Anything > 30 KB gzipped needs justification.
+10. **Preserve Sacramento context.** We're a Sacramento shop. Copy, SEO keywords, and schema.org `areaServed` all reflect that. Don't revert to generic or to wrong cities.
 
-## Performance targets
+## Common tasks — direct links
 
-Lighthouse must stay at **Perf ≥ 90, SEO 100, A11y ≥ 95**. If you add a heavy dependency (anything > ~30 KB gzipped), justify it in the PR description.
+- Add a service → `lib/services.ts`, append an object. Icons live in `components/ui/Icon.tsx`.
+- Add a build → `lib/builds.ts`, append an object. Drop photos in `public/images/builds/<slug>/` when available.
+- Change brand color → `app/globals.css` → edit `--color-accent`.
+- Update phone/email/hours → `lib/site.ts`.
+- Add a page → create `app/<route>/page.tsx`, export `metadata`, add to `lib/site.ts.nav`, add entry to `app/sitemap.ts`.
+- Add an FAQ → `lib/faqs.ts` array; auto-renders on `/faq` with JSON-LD.
 
-## Do-not-do
+## Do not
 
-- Don't add CSS-in-JS libraries (styled-components, emotion) — use Tailwind.
-- Don't add a component library (Material, Chakra) — we own our primitives in `components/ui/`.
-- Don't put secrets in `lib/site.ts` — only public contact info belongs there.
-- Don't embed the Instagram iframe on the homepage — it tanks Lighthouse. Keep the curated static strip.
+- Don't add styled-components / emotion / MUI / Chakra. We own our primitives in `components/ui/`.
+- Don't put secrets in `lib/site.ts` — only public info.
+- Don't embed the official Instagram iframe on the homepage (tanks Lighthouse). The curated static strip stays.
+- Don't change the Sacramento locality / `areaServed` list without being asked.
+- Don't commit `.env.local`. Use Vercel env vars for production.
+- Don't run `git push --force` on `main`.
+- Don't add dependencies casually. If you must, read `docs/CONVENTIONS.md` first.
+
+## You're probably here to…
+
+- **Ship a content change** → `docs/CONTENT_GUIDE.md` for voice, then edit `lib/`.
+- **Add a feature** → read `docs/ROADMAP.md` first to see if it's already scoped.
+- **Debug a build/deploy** → `DEPLOYMENT.md` has the full pipeline + troubleshooting.
+- **Talk about the business** → `docs/BUSINESS.md` has positioning and voice.
+
+Good luck. Ship clean.
