@@ -2,6 +2,19 @@
 
 Hey Rav — this is your site. This doc explains how it works and how to manage it without touching a single line of code. **Copy this whole file into a Google Doc** so you can share it with your team, leave comments, and come back to it whenever.
 
+## Quick links (bookmark these)
+
+| Link | What it is |
+|---|---|
+| **https://rspecperformance.com** | Your live website (after deployment) |
+| **https://github.com/dylan3796/rspecperformance** | The code — where devs ship changes |
+| **https://porkbun.com** | Where your domain is registered |
+| **https://vercel.com/dashboard** | Hosting dashboard + traffic analytics |
+| **https://resend.com/emails** | Log of every contact-form email sent to you |
+| **https://www.instagram.com/r.specperformance/** | Your Instagram (cross-link from site) |
+| **DEPLOYMENT.md** (in the repo) | Step-by-step walkthrough to get the site live |
+| **ASSETS_NEEDED.md** (in the repo) | Checklist of photos/copy the devs need from you |
+
 ---
 
 ## 1. What you own
@@ -164,7 +177,7 @@ When the site first launches, these pieces are still **placeholders** you'll wan
 - [ ] Final phone number, email, and address/service area
 - [ ] Real shop logo (currently a simple wordmark)
 
-See **ASSETS_NEEDED.md** for the complete checklist of what to send your developers.
+See **[ASSETS_NEEDED.md](https://github.com/dylan3796/rspecperformance/blob/main/ASSETS_NEEDED.md)** for the complete checklist of what to send your developers.
 
 ---
 

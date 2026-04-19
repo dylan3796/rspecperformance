@@ -65,18 +65,11 @@ See [`CLAUDE.md`](./CLAUDE.md) for editing conventions and how to extend the sit
 
 ---
 
-## Deploy (Vercel)
+## Deploy
 
-1. Push this repo to GitHub.
-2. Import into Vercel → framework auto-detected as Next.js.
-3. Add the env vars above in **Settings → Environment Variables**.
-4. Add domains `rspecperformance.com` and `www.rspecperformance.com`.
-5. At Porkbun, set DNS:
-   - `A     @     76.76.21.21`
-   - `CNAME www   cname.vercel-dns.com`
-6. Resend: verify the domain (adds SPF/DKIM TXT records at Porkbun).
+See **[`DEPLOYMENT.md`](./DEPLOYMENT.md)** for the full step-by-step walkthrough (Vercel + Porkbun DNS + Resend domain verification). Budget ~30 minutes.
 
-Every push to `main` redeploys automatically. Every PR gets a preview URL.
+Every push to `main` auto-deploys to production. Every PR gets a preview URL.
 
 ---
 
