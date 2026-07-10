@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
 import { Logo } from "@/components/ui/Logo";
 import { Icon } from "@/components/ui/Icon";
@@ -46,6 +47,15 @@ export function Footer() {
                 <Icon name="instagram" className="h-4 w-4" />
                 {site.socials.instagramHandle}
               </a>
+            </li>
+            <li>
+              <Link
+                href="/portal"
+                className="inline-flex items-center gap-2 text-[--color-text] hover:text-[--color-accent] transition-colors"
+              >
+                <Icon name="check" className="h-4 w-4" />
+                Track your service
+              </Link>
             </li>
             <li className="text-[--color-muted]">{site.serviceArea}</li>
           </ul>

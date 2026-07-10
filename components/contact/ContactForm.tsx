@@ -9,7 +9,7 @@ import { Icon } from "@/components/ui/Icon";
 type Status =
   | { kind: "idle" }
   | { kind: "submitting" }
-  | { kind: "success" }
+  | { kind: "success"; tracked: boolean }
   | { kind: "error"; message: string };
 
 const fieldClass =
@@ -38,6 +38,7 @@ export function ContactForm() {
       phone: String(fd.get("phone") || ""),
       vehicle: String(fd.get("vehicle") || ""),
       service: String(fd.get("service") || ""),
+      serviceHistory: String(fd.get("serviceHistory") || ""),
       message: String(fd.get("message") || ""),
       company: String(fd.get("company") || ""),
       startedAt: startedAtRef.current || Date.now() - 2000,
@@ -61,11 +62,14 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
       });
+      const body = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        tracked?: boolean;
+      };
       if (!res.ok) {
-        const body = (await res.json().catch(() => ({}))) as { error?: string };
         throw new Error(body.error || "Something went wrong.");
       }
-      setStatus({ kind: "success" });
+      setStatus({ kind: "success", tracked: !!body.tracked });
       (e.target as HTMLFormElement).reset();
     } catch (err) {
       setStatus({
@@ -81,10 +85,12 @@ export function ContactForm() {
         <div className="mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[--color-accent]/20 text-[--color-accent]">
           <Icon name="check" className="h-6 w-6" />
         </div>
-        <h3 className="text-2xl font-semibold">Message received.</h3>
+        <h3 className="text-2xl font-semibold">Request received.</h3>
         <p className="mt-2 text-[--color-muted]">
-          We&rsquo;ll reply within one business day. For anything urgent, DM us
-          on Instagram for the fastest response.
+          We&rsquo;ll reply within one business day.
+          {status.tracked
+            ? " We also emailed you a personal link to track this request."
+            : " For anything urgent, DM us on Instagram for the fastest response."}
         </p>
       </div>
     );
@@ -124,14 +130,16 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <Field
           name="phone"
-          label="Phone (optional)"
+          label="Phone"
           type="tel"
+          required
           autoComplete="tel"
           error={errors.phone}
         />
         <Field
           name="vehicle"
           label="Year / make / model"
+          required
           placeholder="e.g. 2017 Nissan GT-R"
           error={errors.vehicle}
         />
@@ -151,12 +159,23 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label className={labelClass}>Tell us about your car *</label>
+        <label className={labelClass}>Prior service history (optional)</label>
+        <textarea
+          name="serviceHistory"
+          rows={3}
+          placeholder="Mods, recent work, known issues — anything that helps us know the car."
+          className={fieldClass}
+        />
+        {errors.serviceHistory && <ErrorText>{errors.serviceHistory}</ErrorText>}
+      </div>
+
+      <div>
+        <label className={labelClass}>What&rsquo;s going on with the car? *</label>
         <textarea
           name="message"
           required
-          rows={6}
-          placeholder="Goals, current mods, issues you're chasing, timing…"
+          rows={5}
+          placeholder="Goals, symptoms, timing…"
           className={fieldClass}
         />
         {errors.message && <ErrorText>{errors.message}</ErrorText>}
@@ -170,7 +189,7 @@ export function ContactForm() {
 
       <div className="flex flex-wrap items-center gap-4">
         <Button size="lg" type="submit" disabled={status.kind === "submitting"}>
-          {status.kind === "submitting" ? "Sending…" : "Send message"}
+          {status.kind === "submitting" ? "Sending…" : "Send request"}
           <Icon name="arrow-right" className="h-4 w-4" />
         </Button>
         <p className="text-xs text-[--color-muted]">

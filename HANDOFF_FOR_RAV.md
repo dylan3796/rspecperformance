@@ -75,13 +75,27 @@ That's it. They'll handle it.
 
 ---
 
-## 5. Your contact form
+## 5. Your booking form + dashboard (your free CRM)
 
 When someone fills out the booking form on the homepage, here's what happens:
 
 1. The form is checked for spam (robots and fake submissions get blocked automatically).
-2. A nicely formatted email is sent to **the email you choose** (default: `info@rspecperformance.com`).
-3. You hit "Reply" — it goes straight back to the customer.
+2. The request is **saved to your own database** — name, email, phone, the car, prior service history, and what they need. It's yours forever.
+3. A nicely formatted email is sent to **the email you choose** (default: `info@rspecperformance.com`). Hit "Reply" — it goes straight back to the customer.
+4. The customer gets a confirmation email with **their personal tracking link** — no password, no account setup.
+
+### Your dashboard — rspecperformance.com/admin
+
+Sign in with your passcode. From there you can:
+
+- **See every request** — newest first, with phone and email one tap away.
+- **Set a status** on each job: New → Scheduled → In progress → Done.
+- **Post updates** ("parts arrived, car goes on the lift tomorrow") — the customer sees them on their tracking page, and can get them by email too.
+- **Export everything as a CSV** — one click, opens in Google Sheets or Excel. Your customer list is never locked in.
+
+### Their portal — rspecperformance.com/portal
+
+Customers get their link automatically when they book. If they lose it, they type their email on the portal page and get a fresh one. They see their car, the status, and every update you've posted. That's it — no logins to manage, nothing for you to administer.
 
 **If you stop getting emails,** text your developer — the API key or DNS probably needs a refresh.
 

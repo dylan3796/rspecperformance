@@ -49,6 +49,9 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 |---|---|
 | Company info (phone, email, hours, socials, nav) | `lib/site.ts` |
 | Services list | `lib/services.ts` |
+| Bookings / customers / updates (Postgres) | `lib/db.ts` |
+| Admin session + portal link tokens | `lib/auth.ts` |
+| Transactional email templates | `lib/emails.ts` |
 | JSON-LD (schema.org) builders | `lib/schema.ts` |
 | Shared zod schemas | `lib/validation.ts` |
 | Fonts | `lib/fonts.ts` |
@@ -58,7 +61,7 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 
 ## The 10 rules
 
-1. **React Server Components by default.** Only add `"use client"` when a component needs browser APIs, state, or effects. Currently only `Nav.tsx` and `ContactForm.tsx` are client components.
+1. **React Server Components by default.** Only add `"use client"` when a component needs browser APIs, state, or effects. Currently only `Nav.tsx` and `ContactForm.tsx` are client components; `/admin` and `/portal` are server components built on server actions.
 2. **No CSS-in-JS libraries.** Tailwind utilities + CSS custom properties (e.g. `text-[--color-accent]`) are the entire styling system.
 3. **Brand is CSS variables.** Change colors by editing one line in `app/globals.css` `@theme`. Never hardcode hex in components.
 4. **Validation is shared.** `lib/validation.ts` exports one zod schema used by both the client form and the server route.

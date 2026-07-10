@@ -95,16 +95,29 @@ Step-by-step. Follow top-to-bottom. Start-to-finish is ~30 minutes (most of it w
 
 ---
 
+## 3½. Set up the bookings database (free)
+
+Bookings are stored in a free Postgres database so the shop owns its customer list.
+
+1. Vercel → your project → **Storage** tab → **Create Database** → pick **Neon (Postgres)** → accept the free plan defaults.
+2. Vercel wires up the connection automatically. Check **Settings → Environment Variables** — you should see `DATABASE_URL` (if the integration created `POSTGRES_URL` instead, copy its value into a new variable named `DATABASE_URL`).
+3. Add two more variables while you're there:
+   - `AUTH_SECRET` — any long random string (run `openssl rand -base64 32`, or mash the keyboard for 40+ characters).
+   - `ADMIN_PASSCODE` — the passcode Rav will type at `/admin/login`. Pick something he can remember but nobody can guess.
+4. **Re-deploy**. The database tables create themselves on the first booking — there is no migration step.
+
+---
+
 ## 4. Smoke test
 
 Visit **https://rspecperformance.com** and:
 
 - [ ] Home page loads in < 2 seconds on mobile.
-- [ ] Nav works on mobile (hamburger opens, closes on link click).
-- [ ] `/services` lists all 12 services; click one — detail page renders.
-- [ ] `/builds` lists 3 builds; click one — detail page renders.
-- [ ] `/faq` — click a question, answer expands.
-- [ ] `/contact` — submit a real test inquiry to yourself. Email arrives in the `CONTACT_TO_EMAIL` inbox within 30 seconds.
+- [ ] The three service cards, the work gallery (photos + video), and the booking form all render.
+- [ ] Old links redirect: `/services`, `/builds`, `/about`, `/faq`, `/contact` all land back on the home page.
+- [ ] Submit a real test booking to yourself. Email arrives in the `CONTACT_TO_EMAIL` inbox within 30 seconds, and the request appears at `/admin`.
+- [ ] The confirmation email's tracking link opens the customer portal.
+- [ ] `/admin` — sign in with the passcode, change the test request's status, post an update, download the CSV export.
 - [ ] Share the URL in iMessage or Slack — the link preview shows the branded OG image.
 - [ ] Run https://pagespeed.web.dev on the home page — Performance ≥ 85, SEO 100, Accessibility ≥ 90.
 
