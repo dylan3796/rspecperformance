@@ -1,10 +1,10 @@
-# CLAUDE.md — entry point for AI agents working on RSpec Performance
+# CLAUDE.md — entry point for AI agents working on R-Spec Auto & Performance
 
 > You (the AI) just opened this repo. Read this file first. It's your map.
 
 ## What this repo is
 
-The marketing website for **RSpec Performance** — a Nissan / JDM specialty performance shop in **Sacramento, CA** run by **Rav**, a Nissan master technician (7+ years at the dealer, 10+ years wrenching). Live at https://rspecperformance.com.
+The one-page marketing website for **R-Spec Auto & Performance** — a full-service JDM specialty shop in **Sacramento, CA** run by **Rav**, a Nissan master technician (7+ years at the dealer, 10+ years wrenching). Live at https://rspecperformance.com.
 
 This is a **foundation / shell**. Rav and a small group of contributors (cousin Dylan, friend Edrick) will iterate on it. Future AI sessions should expect to:
 
@@ -48,9 +48,7 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 | Concept | Owner file |
 |---|---|
 | Company info (phone, email, hours, socials, nav) | `lib/site.ts` |
-| Services list + detail content | `lib/services.ts` |
-| Builds / portfolio | `lib/builds.ts` |
-| FAQ entries | `lib/faqs.ts` |
+| Services list | `lib/services.ts` |
 | JSON-LD (schema.org) builders | `lib/schema.ts` |
 | Shared zod schemas | `lib/validation.ts` |
 | Fonts | `lib/fonts.ts` |
@@ -66,7 +64,7 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 4. **Validation is shared.** `lib/validation.ts` exports one zod schema used by both the client form and the server route.
 5. **Metadata lives in the page.** Each route exports `metadata` or `generateMetadata`. Root defaults are in `app/layout.tsx`.
 6. **JSON-LD is centralized.** Build with helpers from `lib/schema.ts`, render via `<script type="application/ld+json">`.
-7. **New services / builds / FAQs = append to the array.** No new page files needed — detail pages auto-generate via `generateStaticParams`.
+7. **New services = append to the array in `lib/services.ts`.** They render on the home page and in the booking form dropdown. Keep it to a handful — the whole point of the redesign is one simple page.
 8. **Keep components small (<~150 lines).** If it's bigger, it's doing too much.
 9. **Performance budget.** Lighthouse: Perf ≥ 90, SEO 100, A11y ≥ 95. Anything > 30 KB gzipped needs justification.
 10. **Preserve Sacramento context.** We're a Sacramento shop. Copy, SEO keywords, and schema.org `areaServed` all reflect that. Don't revert to generic or to wrong cities.
@@ -74,17 +72,16 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 ## Common tasks — direct links
 
 - Add a service → `lib/services.ts`, append an object. Icons live in `components/ui/Icon.tsx`.
-- Add a build → `lib/builds.ts`, append an object. Drop photos in `public/images/builds/<slug>/` when available.
+- Add work photos/clips → drop web-compressed files in `public/work/` and wire them into the `Work` section in `app/page.tsx`.
 - Change brand color → `app/globals.css` → edit `--color-accent`.
 - Update phone/email/hours → `lib/site.ts`.
-- Add a page → create `app/<route>/page.tsx`, export `metadata`, add to `lib/site.ts.nav`, add entry to `app/sitemap.ts`.
-- Add an FAQ → `lib/faqs.ts` array; auto-renders on `/faq` with JSON-LD.
+- Add a page → think twice: the site is deliberately a one-pager. If truly needed, create `app/<route>/page.tsx`, export `metadata`, add to `app/sitemap.ts`.
 
 ## Do not
 
 - Don't add styled-components / emotion / MUI / Chakra. We own our primitives in `components/ui/`.
 - Don't put secrets in `lib/site.ts` — only public info.
-- Don't embed the official Instagram iframe on the homepage (tanks Lighthouse). The curated static strip stays.
+- Don't embed the official Instagram iframe on the homepage (tanks Lighthouse). Link out instead.
 - Don't change the Sacramento locality / `areaServed` list without being asked.
 - Don't commit `.env.local`. Use Vercel env vars for production.
 - Don't run `git push --force` on `main`.

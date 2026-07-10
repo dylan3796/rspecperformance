@@ -1,6 +1,6 @@
-# RSpec Performance — rspecperformance.com
+# R-Spec Auto & Performance — rspecperformance.com
 
-Marketing site for RSpec Performance, a Nissan / JDM specialty performance shop in Sacramento, CA. Next.js 16 (App Router) + TypeScript + Tailwind v4, deployed on Vercel.
+One-page marketing site for R-Spec Auto & Performance, a full-service JDM specialty shop in Sacramento, CA. Next.js 16 (App Router) + TypeScript + Tailwind v4, deployed on Vercel.
 
 ## Audience-specific entry points
 
@@ -71,7 +71,7 @@ All the context a new contributor (human or AI) needs, grouped:
 ```
 app/        Next.js App Router pages, API routes, metadata (sitemap/robots/OG/icons)
 components/ React components — Server Components by default
-lib/        Domain: site config, services/builds/faqs arrays, zod schemas, JSON-LD
+lib/        Domain: site config, services array, zod schemas, JSON-LD
 public/     Static assets
 docs/       Deeper internal documentation (see map above)
 ```

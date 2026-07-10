@@ -33,10 +33,10 @@ Hey Rav — this is your site. This doc explains how it works and how to manage 
 
 ## 2. What this site does for you
 
-1. **Tells your story.** A real About page, your experience, how you work.
-2. **Sells your services.** Every service has its own page with its own Google search ranking.
-3. **Shows off your builds.** Each build is a portfolio piece — and a page Google can rank.
-4. **Collects leads.** When someone fills out the contact form, you get an email within seconds.
+1. **Tells your story.** Who you are, your experience, how you work — all on one fast page.
+2. **Sells your services.** Maintenance, JDM & performance, and detailing, laid out plainly.
+3. **Shows off real work.** Photos and video from your own bay — no stock images.
+4. **Collects leads.** When someone fills out the booking form, you get an email within seconds.
 5. **Looks legit on social shares.** Link previews on Instagram, text messages, etc. all look clean and branded.
 
 ---
@@ -77,7 +77,7 @@ That's it. They'll handle it.
 
 ## 5. Your contact form
 
-When someone fills out the form on `/contact`, here's what happens:
+When someone fills out the booking form on the homepage, here's what happens:
 
 1. The form is checked for spam (robots and fake submissions get blocked automatically).
 2. A nicely formatted email is sent to **the email you choose** (default: `info@rspecperformance.com`).

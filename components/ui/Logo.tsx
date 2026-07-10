@@ -1,46 +1,42 @@
+import Image from "next/image";
+import badge from "@/public/brand/rspec-badge.webp";
+
 type Props = {
   className?: string;
-  mono?: boolean;
+  badgeClassName?: string;
+  withWordmark?: boolean;
 };
 
-export function Logo({ className = "h-8 w-auto", mono = false }: Props) {
-  // Wordmark logo — "R/SPEC" with a cyan slash accent. Rav can swap with a
-  // real SVG logo by dropping /public/logo.svg and updating this component.
+// Brand lockup: the R-Spec badge next to a text wordmark. The badge artwork
+// is a photo-sourced cutout on transparent background — display on dark
+// surfaces only.
+export function Logo({
+  className = "",
+  badgeClassName = "h-9 w-auto",
+  withWordmark = true,
+}: Props) {
   return (
-    <svg
-      className={className}
-      viewBox="0 0 180 40"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="RSpec Performance"
-    >
-      <g fontFamily="var(--font-display), ui-sans-serif, sans-serif" fontWeight={700}>
-        <text x="0" y="28" fontSize="26" fill="currentColor" letterSpacing="1">
-          R
-        </text>
-        <text
-          x="18"
-          y="28"
-          fontSize="26"
-          fill={mono ? "currentColor" : "var(--color-accent)"}
-          letterSpacing="1"
-        >
-          /
-        </text>
-        <text x="32" y="28" fontSize="26" fill="currentColor" letterSpacing="1">
-          SPEC
-        </text>
-        <text
-          x="98"
-          y="28"
-          fontSize="12"
-          fill="currentColor"
-          opacity="0.7"
-          letterSpacing="3"
-        >
-          PERFORMANCE
-        </text>
-      </g>
-    </svg>
+    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+      <Image
+        src={badge}
+        alt=""
+        className={badgeClassName}
+        priority
+        sizes="48px"
+      />
+      {withWordmark && (
+        <span className="flex flex-col leading-none">
+          <span
+            className="font-semibold text-lg tracking-[0.08em]"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            R-SPEC
+          </span>
+          <span className="text-[9px] font-medium uppercase tracking-[0.28em] text-[--color-muted]">
+            Auto &amp; Performance
+          </span>
+        </span>
+      )}
+    </span>
   );
 }

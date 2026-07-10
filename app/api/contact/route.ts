@@ -111,11 +111,11 @@ export async function POST(req: Request) {
 
   const html = `
     <div style="font-family:Inter,system-ui,sans-serif;background:#0f1318;color:#e6edf3;padding:24px;border-radius:12px">
-      <h2 style="margin:0 0 12px;color:#00e5ff;font-family:Rajdhani,sans-serif;letter-spacing:1px">New inquiry — RSpec Performance</h2>
+      <h2 style="margin:0 0 12px;color:#3b8dee;font-family:Rajdhani,sans-serif;letter-spacing:1px">New inquiry — ${site.name}</h2>
       <table style="border-collapse:collapse;font-size:14px;margin-bottom:16px">
         <tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Name</td><td>${escape(data.name)}</td></tr>
-        <tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Email</td><td><a href="mailto:${escape(data.email)}" style="color:#00e5ff">${escape(data.email)}</a></td></tr>
-        ${data.phone ? `<tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Phone</td><td><a href="tel:${escape(data.phone)}" style="color:#00e5ff">${escape(data.phone)}</a></td></tr>` : ""}
+        <tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Email</td><td><a href="mailto:${escape(data.email)}" style="color:#3b8dee">${escape(data.email)}</a></td></tr>
+        ${data.phone ? `<tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Phone</td><td><a href="tel:${escape(data.phone)}" style="color:#3b8dee">${escape(data.phone)}</a></td></tr>` : ""}
         ${data.vehicle ? `<tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Vehicle</td><td>${escape(data.vehicle)}</td></tr>` : ""}
         ${data.service ? `<tr><td style="padding:4px 12px 4px 0;color:#8a95a3">Interested in</td><td>${escape(data.service)}</td></tr>` : ""}
       </table>
@@ -126,7 +126,7 @@ export async function POST(req: Request) {
   try {
     const from =
       process.env.CONTACT_FROM_EMAIL ||
-      `RSpec Performance <no-reply@rspecperformance.com>`;
+      `R-Spec Auto & Performance <no-reply@rspecperformance.com>`;
     const { error } = await resend.emails.send({
       from,
       to,

@@ -102,6 +102,13 @@ export function Icon({ name, className = "h-6 w-6" }: IconProps) {
           <path d="M12 3v6M12 15v6M3 12h6M15 12h6M6 6l4 4M14 14l4 4M6 18l4-4M14 10l4-4" />
         </svg>
       );
+    case "droplet":
+      return (
+        <svg {...common}>
+          <path d="M12 3c3.5 4.5 6 7.6 6 10.5a6 6 0 0 1-12 0C6 10.6 8.5 7.5 12 3z" />
+          <path d="M9.5 13.5a2.5 2.5 0 0 0 2 2.4" />
+        </svg>
+      );
     case "instagram":
       return (
         <svg {...common}>

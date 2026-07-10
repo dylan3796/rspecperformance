@@ -53,48 +53,7 @@ export function autoRepairJsonLd() {
       itemOffered: {
         "@type": "Service",
         name: s.title,
-        url: `${site.url}/services/${s.slug}`,
       },
-    })),
-  };
-}
-
-export function serviceJsonLd(slug: string) {
-  const s = services.find((x) => x.slug === slug);
-  if (!s) return null;
-  return {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: s.title,
-    description: s.tagline,
-    provider: { "@id": `${site.url}#business` },
-    areaServed: areaServed.map((a) => ({ "@type": "City", name: a })),
-    serviceType: s.category,
-    url: `${site.url}/services/${s.slug}`,
-  };
-}
-
-export function breadcrumbJsonLd(trail: { name: string; url: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: trail.map((t, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      name: t.name,
-      item: t.url,
-    })),
-  };
-}
-
-export function faqJsonLd(faqs: { q: string; a: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
     })),
   };
 }
