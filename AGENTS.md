@@ -6,7 +6,7 @@
 
 ## What you're working on
 
-Marketing website for **RSpec Performance**, a Nissan / JDM specialty performance shop in Sacramento, CA. Live at https://rspecperformance.com.
+One-page marketing website for **R-Spec Auto & Performance**, a full-service JDM specialty shop in Sacramento, CA. Live at https://rspecperformance.com.
 
 Owner: Rav (Nissan master technician). Maintainers: Dylan, Edrick. This is a shell the team iterates on — prefer small, focused, shippable changes over large refactors.
 
@@ -28,7 +28,7 @@ Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS v4 (`@theme` i
 - No CSS-in-JS libraries. Tailwind utilities + CSS custom properties only.
 - Brand colors / spacing / typography live in `@theme` in `app/globals.css` — never hardcode.
 - Company facts live in `lib/site.ts` — never duplicate.
-- Services / builds / FAQs are typed arrays in `lib/`; new entries auto-generate pages.
+- Services are a typed array in `lib/services.ts`, rendered on the one-page home (and in the booking form's dropdown).
 - Shared zod schemas (`lib/validation.ts`) for both client and server form handling.
 - Sacramento is the service area. Don't change that unless the user explicitly asks.
 - Lighthouse targets: Perf ≥ 90, SEO 100, A11y ≥ 95. Justify any dep > 30 KB gzipped.

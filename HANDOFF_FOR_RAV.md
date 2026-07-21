@@ -33,10 +33,10 @@ Hey Rav — this is your site. This doc explains how it works and how to manage 
 
 ## 2. What this site does for you
 
-1. **Tells your story.** A real About page, your experience, how you work.
-2. **Sells your services.** Every service has its own page with its own Google search ranking.
-3. **Shows off your builds.** Each build is a portfolio piece — and a page Google can rank.
-4. **Collects leads.** When someone fills out the contact form, you get an email within seconds.
+1. **Tells your story.** Who you are, your experience, how you work — all on one fast page.
+2. **Sells your services.** Maintenance, JDM & performance, and detailing, laid out plainly.
+3. **Shows off real work.** Photos and video from your own bay — no stock images.
+4. **Collects leads.** When someone fills out the booking form, you get an email within seconds.
 5. **Looks legit on social shares.** Link previews on Instagram, text messages, etc. all look clean and branded.
 
 ---
@@ -75,13 +75,27 @@ That's it. They'll handle it.
 
 ---
 
-## 5. Your contact form
+## 5. Your booking form + dashboard (your free CRM)
 
-When someone fills out the form on `/contact`, here's what happens:
+When someone fills out the booking form on the homepage, here's what happens:
 
 1. The form is checked for spam (robots and fake submissions get blocked automatically).
-2. A nicely formatted email is sent to **the email you choose** (default: `info@rspecperformance.com`).
-3. You hit "Reply" — it goes straight back to the customer.
+2. The request is **saved to your own database** — name, email, phone, the car, prior service history, and what they need. It's yours forever.
+3. A nicely formatted email is sent to **the email you choose** (default: `info@rspecperformance.com`). Hit "Reply" — it goes straight back to the customer.
+4. The customer gets a confirmation email with **their personal tracking link** — no password, no account setup.
+
+### Your dashboard — rspecperformance.com/admin
+
+Sign in with your passcode. From there you can:
+
+- **See every request** — newest first, with phone and email one tap away.
+- **Set a status** on each job: New → Scheduled → In progress → Done.
+- **Post updates** ("parts arrived, car goes on the lift tomorrow") — the customer sees them on their tracking page, and can get them by email too.
+- **Export everything as a CSV** — one click, opens in Google Sheets or Excel. Your customer list is never locked in.
+
+### Their portal — rspecperformance.com/portal
+
+Customers get their link automatically when they book. If they lose it, they type their email on the portal page and get a fresh one. They see their car, the status, and every update you've posted. That's it — no logins to manage, nothing for you to administer.
 
 **If you stop getting emails,** text your developer — the API key or DNS probably needs a refresh.
 

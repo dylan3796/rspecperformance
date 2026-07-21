@@ -7,9 +7,10 @@
   --color-border: #1c232b;
   --color-text: #e6edf3;
   --color-muted: #8a95a3;
-  --color-accent: #00e5ff;
-  --color-accent-600: #06b6d4;
-  --color-accent-700: #0891b2;
+  /* Accent sampled from the R-Spec badge lettering */
+  --color-accent: #3b8dee;
+  --color-accent-600: #1978dc;
+  --color-accent-700: #1257a8;
   --color-danger: #ef4444;
   --color-success: #10b981;
 

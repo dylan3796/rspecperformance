@@ -7,11 +7,14 @@ export const contactSchema = z.object({
     .string()
     .trim()
     .min(7, "Enter a valid phone number.")
-    .max(40)
-    .optional()
-    .or(z.literal("")),
-  vehicle: z.string().trim().max(120).optional().or(z.literal("")),
+    .max(40),
+  vehicle: z
+    .string()
+    .trim()
+    .min(3, "Tell us the year / make / model.")
+    .max(120),
   service: z.string().trim().max(80).optional().or(z.literal("")),
+  serviceHistory: z.string().trim().max(2000).optional().or(z.literal("")),
   message: z
     .string()
     .trim()
@@ -24,3 +27,16 @@ export const contactSchema = z.object({
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;
+
+export const portalRequestSchema = z.object({
+  email: z.string().trim().email("Enter a valid email."),
+});
+
+export const updateSchema = z.object({
+  body: z
+    .string()
+    .trim()
+    .min(2, "Write the update first.")
+    .max(2000),
+  notify: z.boolean(),
+});

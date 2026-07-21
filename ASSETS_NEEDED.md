@@ -1,35 +1,22 @@
-# ASSETS_NEEDED — what to send to replace placeholders
+# ASSETS_NEEDED — what's still placeholder
 
-This is everything the developers need from Rav to make the site 100% real. Until these are delivered, the site uses tasteful placeholders flagged with `TODO(Rav)` comments in the code.
+The site now uses the real R-Spec badge and real shop photos/video. What's left before launch is small. Placeholders are flagged with `TODO(Rav)` comments in the code.
 
-## Priority 1 — needed for launch
+## Needed for launch
 
-- [ ] **Logo SVG** (ideally light + dark variants). Drop at `/public/logo.svg` and `/public/logo-mark.svg`.
-- [ ] **Business phone number** — update in `lib/site.ts` (`phone`, `phoneHref`).
-- [ ] **Business email** — update in `lib/site.ts` (`email`, `bookingEmail`).
-- [ ] **Service area / address** — update `lib/site.ts` (`address`, `serviceArea`) and `lib/schema.ts` (`areaServed` cities).
-- [ ] **Hours of operation** — update `lib/site.ts` (`hours`) and the opening-hours spec in `lib/schema.ts`.
-- [ ] **Hero photo** (landscape, ≥2400px wide, clean shot of a tuned Nissan). Drop at `/public/images/hero/hero.jpg` and swap the placeholder in `components/home/Hero.tsx` for `<Image>`.
-- [ ] **Headshot of Rav** at `/public/images/headshot/rav.jpg`. Swap placeholder in `app/about/page.tsx`.
+- [ ] **Business phone number** — update in `lib/site.ts` (`phone`, `phoneHref`). Currently a (555) placeholder.
+- [ ] **Confirm service area / address** — `lib/site.ts` (`address`, `serviceArea`) and `lib/schema.ts` (`areaServed` cities).
+- [ ] **Confirm hours** — `lib/site.ts` (`hours`) and the opening-hours spec in `lib/schema.ts`.
+- [ ] **Resend key + contact email** set in Vercel (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`) so the booking form actually sends.
 
-## Priority 2 — needed soon after
+## Nice upgrades
 
-- [ ] **3 real testimonials** — quote + first name + car. Replace the dummies in `components/home/Testimonials.tsx`.
-- [ ] **3–5 build photo sets**, one folder per build at `/public/images/builds/<slug>/hero.jpg` + supporting shots. Replace `<BuildArt />` with `<Image>` in `app/builds/page.tsx` and `app/builds/[slug]/page.tsx`.
-- [ ] **Shop interior/exterior photos** for the About page gallery (once we add one).
+- [ ] **Original logo file** (SVG or high-res PNG on transparent background). The current badge at `public/brand/rspec-badge.webp` is cleaned up from a photo of a screen — it looks good on the dark site, but the original artwork would be sharper. Also regenerate `app/icon.png`, `app/apple-icon.png`, and `app/opengraph-image.jpg` from it.
+- [ ] **More work photos/clips** — web-compressed files in `public/work/`, wired into the `Work` section in `app/page.tsx`. Keep videos short (≤15s) and under ~5 MB.
 - [ ] **Google Business Profile URL** — add to `lib/site.ts` socials.
-- [ ] **Final services list** — trim or expand `lib/services.ts`.
-
-## Priority 3 — growth assets
-
-- [ ] **TikTok / YouTube / Facebook links** if you launch any of them — add to `lib/site.ts` socials.
-- [ ] **6 curated Instagram thumbnails** for the homepage strip — drop at `/public/images/ig/1..6.jpg` and wire them in `components/home/InstagramStrip.tsx`.
-- [ ] **FAQ updates** — review `lib/faqs.ts` and add real questions customers ask you.
-- [ ] **Dyno graph images** for featured builds (builds pages can host these).
 
 ## How to deliver
 
-1. **Photos:** share a Google Drive folder with the devs.
-2. **Logo:** SVG is best. If you only have a PNG or JPG, send the highest-res version you can find.
-3. **Text/copy:** paste it in a Google Doc or text it — whatever is easiest.
-4. **Phone/email/address:** just text the devs. 30-second change.
+1. **Photos/video:** share a Google Drive folder or text them.
+2. **Logo:** SVG is best; otherwise the highest-res PNG you can find.
+3. **Phone/address/hours:** just text it. 30-second change.

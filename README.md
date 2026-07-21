@@ -1,6 +1,6 @@
-# RSpec Performance — rspecperformance.com
+# R-Spec Auto & Performance — rspecperformance.com
 
-Marketing site for RSpec Performance, a Nissan / JDM specialty performance shop in Sacramento, CA. Next.js 16 (App Router) + TypeScript + Tailwind v4, deployed on Vercel.
+One-page marketing site for R-Spec Auto & Performance, a full-service JDM specialty shop in Sacramento, CA. Next.js 16 (App Router) + TypeScript + Tailwind v4, deployed on Vercel.
 
 ## Audience-specific entry points
 
@@ -32,10 +32,13 @@ pnpm dev                           # http://localhost:3000
 
 See [`.env.local.example`](./.env.local.example). Required in production:
 
-- `RESEND_API_KEY` — contact form email delivery
+- `RESEND_API_KEY` — transactional email delivery (owner notifications, customer confirmations, updates)
 - `CONTACT_TO_EMAIL` — where inquiries land
 - `CONTACT_FROM_EMAIL` — must be on a Resend-verified domain
 - `NEXT_PUBLIC_SITE_URL` — e.g. `https://rspecperformance.com`
+- `DATABASE_URL` — Postgres for bookings/CRM (free Neon instance via the Vercel Marketplace)
+- `AUTH_SECRET` — signs the admin session cookie and customer portal links
+- `ADMIN_PASSCODE` — the passcode for `/admin/login`
 
 ---
 
@@ -69,10 +72,10 @@ All the context a new contributor (human or AI) needs, grouped:
 ## Architecture (skim version)
 
 ```
-app/        Next.js App Router pages, API routes, metadata (sitemap/robots/OG/icons)
+app/        One-page home + /admin (shop CRM) + /portal (customer tracking), API routes, metadata
 components/ React components — Server Components by default
-lib/        Domain: site config, services/builds/faqs arrays, zod schemas, JSON-LD
-public/     Static assets
+lib/        Domain: site config, services array, db access (pg), auth tokens (jose), emails, zod schemas
+public/     Static assets (brand badge, work photos/video)
 docs/       Deeper internal documentation (see map above)
 ```
 

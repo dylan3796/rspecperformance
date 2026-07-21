@@ -1,11 +1,11 @@
 export const site = {
-  name: "RSpec Performance",
-  shortName: "RSpec",
-  tagline: "Dealer-level precision. Tuner-level ambition.",
+  name: "R-Spec Auto & Performance",
+  shortName: "R-Spec",
+  tagline: "Sacramento's JDM specialist",
   description:
-    "JDM and Nissan performance specialists. Master-tech tuning, builds, and honest service for enthusiasts who demand more than dealer work.",
+    "Full-service, appointment-only auto shop in Sacramento run by a Nissan master tech. Maintenance, JDM & performance work, and detailing — book direct with the person who works on your car.",
   url: "https://rspecperformance.com",
-  ogImageAlt: "RSpec Performance — JDM and Nissan specialists",
+  ogImageAlt: "R-Spec Auto & Performance — Sacramento JDM specialists",
 
   // TODO(Rav): replace with real contact info before launch.
   phone: "(555) 555-0199",
@@ -32,18 +32,12 @@ export const site = {
   socials: {
     instagram: "https://www.instagram.com/r.specperformance/",
     instagramHandle: "@r.specperformance",
-    // TODO(Rav): add if/when live.
-    tiktok: "",
-    youtube: "",
-    facebook: "",
   },
 
   nav: [
-    { href: "/services", label: "Services" },
-    { href: "/builds", label: "Builds" },
-    { href: "/about", label: "About" },
-    { href: "/faq", label: "FAQ" },
-    { href: "/contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#work", label: "Work" },
+    { href: "/#about", label: "About" },
   ],
 
   priceRange: "$$",
