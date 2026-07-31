@@ -6,6 +6,8 @@
 
 The one-page marketing website for **R-Spec Auto & Performance** — a full-service JDM specialty shop in **Sacramento, CA** run by **Rav**, a Nissan master technician (7+ years at the dealer, 10+ years wrenching). Live at https://rspecperformance.com.
 
+> **Current state: holding page.** The public site is deliberately down to the badge and a "Work in progress" line (`app/page.tsx`). The full homepage is parked, intact, in `components/home/HomePage.tsx`, and `<Nav />` / `<Footer />` are commented out of `app/layout.tsx`. `/admin` and `/portal` still work. To put the site back: re-export the parked page from `app/page.tsx` and restore the two layout components. Don't rebuild the homepage from scratch — it already exists.
+
 This is a **foundation / shell**. Rav and a small group of contributors (cousin Dylan, friend Edrick) will iterate on it. Future AI sessions should expect to:
 
 - Add new services or builds (typed arrays in `lib/`)
@@ -75,7 +77,7 @@ Every domain concept has **one file** that owns it. Edit the file, the rest rege
 ## Common tasks — direct links
 
 - Add a service → `lib/services.ts`, append an object. Icons live in `components/ui/Icon.tsx`.
-- Add work photos/clips → drop web-compressed files in `public/work/` and wire them into the `Work` section in `app/page.tsx`.
+- Add work photos/clips → drop web-compressed files in `public/work/` and wire them into the `Work` section in `components/home/HomePage.tsx`.
 - Change brand color → `app/globals.css` → edit `--color-accent`.
 - Update phone/email/hours → `lib/site.ts`.
 - Add a page → think twice: the site is deliberately a one-pager. If truly needed, create `app/<route>/page.tsx`, export `metadata`, add to `app/sitemap.ts`.
