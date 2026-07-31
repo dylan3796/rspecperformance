@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans } from "@/lib/fonts";
 import { site } from "@/lib/site";
-import { Nav } from "@/components/layout/Nav";
-import { Footer } from "@/components/layout/Footer";
 import { autoRepairJsonLd } from "@/lib/schema";
 import "./globals.css";
 
@@ -59,9 +57,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${display.variable}`}>
       <body className="min-h-screen flex flex-col">
-        <Nav />
+        {/* Nav + Footer are off while the site is a holding page. */}
         <main className="flex-1">{children}</main>
-        <Footer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

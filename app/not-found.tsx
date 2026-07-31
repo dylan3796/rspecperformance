@@ -1,21 +1,15 @@
-import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
+// The site is a holding page, so a 404 says as little as the homepage does.
 export default function NotFound() {
   return (
-    <Container className="py-32 text-center">
-      <div className="text-8xl font-semibold text-gradient">404</div>
-      <h1 className="mt-4 text-3xl sm:text-4xl font-semibold">Off the map.</h1>
-      <p className="mt-4 text-[--color-muted] max-w-md mx-auto">
-        That page doesn&rsquo;t exist. Head back to the shop and let&rsquo;s
-        get you where you were going.
+    <div className="flex min-h-[calc(100dvh-1px)] flex-col items-center justify-center gap-6 px-6 py-20 text-center">
+      <p className="text-sm font-medium uppercase tracking-[0.28em] text-[--color-muted]">
+        Work in progress
       </p>
-      <div className="mt-8 flex justify-center gap-3">
-        <Button href="/">Back to home</Button>
-        <Button href="/#book" variant="outline">
-          Book an appointment
-        </Button>
-      </div>
-    </Container>
+      <Link href="/" className="text-sm text-[--color-accent] hover:underline">
+        Back to home
+      </Link>
+    </div>
   );
 }
